@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - L.R._Gcaleka__Co/EmployeesPortal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+    <link href="~/css/stafflayout.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="\css\pngtree-law-logo-vector-with-judicial-balance-symbolic-of-justice-scale-in-png-image_5255566.jpg" />
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">L.R. Gcaleka & Co</span>
+                    <span class="profession">Attorneys</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a asp-action="Dashboard" asp-controller="Home">
+                            <i class='bx bx-home icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a asp-action="AllFiles" asp-controller="Home">
+                            <i class='bx bx-cabinet icon'></i>
+                            <span class="text nav-text">Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a asp-action="ClientList" asp-controller="Home">
+                            <i class='bx bx-spreadsheet icon'></i>
+                            <span class="text nav-text">Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home icon'></i>
+                            <span class="text nav-text">Applications</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a asp-area="Identity" asp-page="/Account/Register">
+                            <i class='bx bxs-user-plus icon'></i>
+                            <span class="text nav-text">Register Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a asp-action="Appointments" asp-controller="Home">
+                            <i class='bx bx-calendar-event icon'></i>
+                            <span class="text nav-text">Reminders</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-report icon'></i>
+                            <span class="text nav-text">Monthly Reports</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-left:20%">
+        @RenderBody()
+        <div id="modalContainer"></div>
+    </div>
+    <script src="~/js/stafflayout.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
