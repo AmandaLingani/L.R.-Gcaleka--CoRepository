@@ -1,0 +1,40 @@
+﻿@page
+@model RegisterClientModel
+@{
+}
+
+<form id="registerClientForm"  asp-route-returnUrl="@Model.ReturnUrl" method="Post">
+    <input type="hidden" name="userType" value="Client" />
+
+    <div class="form-group">
+        <label asp-for="ClientInput.FirstName"></label>
+        <input asp-for="ClientInput.FirstName" class="form-control" />
+        <span asp-validation-for="ClientInput.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClientInput.LastName"></label>
+        <input asp-for="ClientInput.LastName" class="form-control" />
+        <span asp-validation-for="ClientInput.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClientInput.Email"></label>
+        <input asp-for="ClientInput.Email" class="form-control" />
+        <span asp-validation-for="ClientInput.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClientInput.Password"></label>
+        <input asp-for="ClientInput.Password" type="password" class="form-control" />
+        <span asp-validation-for="ClientInput.Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClientInput.ConfirmPassword"></label>
+        <input asp-for="ClientInput.ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="ClientInput.ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
