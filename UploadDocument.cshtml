@@ -1,0 +1,100 @@
+﻿@model L.R._Gcaleka__Co.Models.ViewModels.ClientDocumentViewModel
+@{
+}
+
+<form asp-action="UploadDocument" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="SubmissionDate" class="control-label">Date:</label>
+        <input asp-for="SubmissionDate" class="form-control" type="date" readonly />
+    </div>
+
+    <input type="file" name="files" accept="image/*,.pdf,.docx*" onchange="previewFile(event)" multiple />
+    <br />
+
+    <div id="previewContainer"></div>
+   
+    <button type="submit" class="btn btn-dark">Upload</button>
+</form>
+
+<script>
+
+    let filesArray = [];
+
+    document.getElementById("fileInput").addEventListener("change", previewFile);
+
+    function previewFile(event) {
+        let newFiles = Array.from(event.target.files);
+
+        newFiles.forEach(file => {
+            if (!filesArray.some(f => f.name === file.name)) {
+                filesArray.push(file);
+                displayPreview(file);
+            }
+        });
+        console.log("Current files:", filesArray);
+    }
+
+    function displayPreview(file) {
+        let fileType = file.type;
+        let previewContainer = document.getElementById("previewContainer");
+
+        let fileWrapper = document.createElement("div");
+        fileWrapper.className = "file-wrapper";
+        fileWrapper.style.position = "relative";
+        fileWrapper.style.display = "inline-block";
+        fileWrapper.style.margin = "10px";
+
+        let removeButton = document.createElement("button");
+        removeButton.innerHTML = "X";
+        removeButton.style.position = "absolute";
+        removeButton.style.top = "5px";
+        removeButton.style.right = "5px";
+        removeButton.style.background = "red";
+        removeButton.style.color = "white";
+        removeButton.style.border = "none";
+        removeButton.style.cursor = "pointer";
+
+        removeButton.onclick = function () {
+            filesArray = filesArray.filter(f => f.name !== file.name);
+            fileWrapper.remove();
+            console.log("file removed", file.name);
+        };
+
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            if (fileType.startsWith("image/")) {
+                let img = document.createElement("img");
+                img.src = e.target.result;
+                img.style.maxWidth = "200px";
+                img.style.display = "block";
+                fileWrapper.appendChild(img);
+            } else if (fileType === "application/pdf") {
+                let iframe = document.createElement("iframe");
+                iframe.src = e.target.result;
+                iframe.style.maxWidth = "200px";
+                iframe.style.height = "300px";
+                iframe.style.display = "block";
+                fileWrapper.appendChild(iframe);
+            } else if (file.name.endsWith(".docx")) {
+                let docPlaceholder = document.createElement("p");
+                docPlaceholder.textContent = "DOCX File: " + file.name;
+                docPlaceholder.style.border = "1px solid #ccc";
+                docPlaceholder.style.padding = "10px";
+                docPlaceholder.style.background = "#f4f4f4";
+                fileWrapper.appendChild(docPlaceholder);
+            }
+            fileWrapper.appendChild(removeButton);
+            previewContainer.appendChild(fileWrapper);
+        };
+        // var loadFile = function (event) { //now previewFile
+        //     var reader = new FileReader();
+        //     reader.onload = function () {
+        //         var output = document.getElementById('output');
+        //         output.src = reader.result;
+        //     };
+        //     reader.readAsDataURL(event.target.files[0]);
+        // };
+        reader.readAsDataURL(file);
+    }
+</script>

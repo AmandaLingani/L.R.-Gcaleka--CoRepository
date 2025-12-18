@@ -1,0 +1,22 @@
+﻿@model L.R._Gcaleka__Co.Models.ViewModels.AppointmentViewModel
+@{
+
+}
+<form asp-action="ScheduleAppointment" method="post">
+    <div class="form-group">
+        <label asp-for="AppointmentDate" class="control-label">Appointment Date:</label>
+        <input asp-for="AppointmentDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactNumber" class="control-label">Contact Number:</label>
+        <input asp-for="ContactNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="AppointmentType" class="control-label">Appointment For:</label>
+        <select asp-for="AppointmentType" class="form-control">
+            <option value="Consult">Consult</option>
+            <option value="CaseUpdate">Case Update</option>
+        </select>
+    </div>
+    <button type="submit">Schedule</button>
+</form>
