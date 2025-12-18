@@ -1,0 +1,113 @@
+﻿@model L.R._Gcaleka__Co.Models.ViewModels.ClienteleViewModel
+@{
+    Layout = "_StaffLayout";
+}
+
+<body>
+
+    <form asp-action="AddClient" method="post">
+        <input type="hidden" asp-for="EmployeeId" />
+        <div class="grid-container">
+            <div>
+                <div class="form-group">
+                    <label asp-for="ClientType" class="control-label">Client Type:</label>
+                    <select asp-for="ClientType" class="form-control" id="clientTypeDropdown">
+                        <option value="Individual">Individual</option>
+                        <option value="Company">Company</option>
+                    </select>
+                </div>
+
+                <div id="individualFields" style="display:none;">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">First Name:</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Last Name:</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdentityNumber" class="control-label">Identity Number:</label>
+                        <input asp-for="IdentityNumber" class="form-control" />
+                        <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label">Date of Birth:</label>
+                        <input asp-for="DateOfBirth" class="form-control" type="date" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div id="companyFields" style="display:none;">
+                    <div class="form-group">
+                        <label asp-for="CompanyName" class="control-label">Company Name:</label>
+                        <input asp-for="CompanyName" class="form-control" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNumber" class="control-label">Contact Number:</label>
+                    <input asp-for="ContactNumber" class="form-control" />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AltContactNumber" class="control-label">Alternative Contact Number:</label>
+                    <input asp-for="AltContactNumber" class="form-control" />
+                    <span asp-validation-for="AltContactNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label">Email Address:</label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label asp-for="SelectedProvinceId" class="control-label">Province:</label>
+                    <select asp-for="SelectedProvinceId" class="form-control" asp-items="ViewBag.ProvinceId">
+                        <option value="">Select</option>
+
+                    </select>
+                    <span asp-validation-for="SelectedProvinceId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedCityId" class="control-label">City:</label>
+                    <select asp-for="SelectedCityId" class="form-control" asp-items="ViewBag.CityId">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="SelectedCityId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedSuburbId" class="control-label">Suburb:</label>
+                    <select asp-for="SelectedSuburbId" class="form-control" asp-items="ViewBag.SuburbId">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="SelectedSuburbId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedPostalCodeId" class="control-label">Zip Code:</label>
+                    <select asp-for="SelectedPostalCodeId" class="form-control" asp-items="ViewBag.PostalCodeId">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="SelectedPostalCodeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StreetAddress" class="control-label">Street Address:</label>
+                    <input asp-for="StreetAddress" class="form-control" />
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-action="Dashboard" asp-controller="Home" class="button">Exit</a>
+        </div>
+        <div>
+    </div>
+   
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="~/js/clientaddress.js"></script>
+</body>

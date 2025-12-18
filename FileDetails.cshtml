@@ -1,0 +1,64 @@
+﻿@model L.R._Gcaleka__Co.Models.Files
+@{
+    Layout = "_StaffLayout";
+}
+
+<a class="btn" asp-controller="Home" asp-action="Dashboard">Exit</a>
+
+<body>
+    <div class="main-content">
+        <div class="container mt-4">
+            <h2>File Details</h2>
+            </br>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="FileName" class="control-label">File Number:</label>
+                        <span class="form-control">@Model.FileName</span>
+                    </div>
+                    @if (Model.Client.ClientType.ToString() == "Individual")
+                    {
+                        <div class="form-group">
+                            <label asp-for="Client.FirstName" class="control-label">First Name:</label>
+                            <span class="form-control">@Model.Client.FirstName</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Client.LastName" class="control-label">Last Name:</label>
+                            <span class="form-control">@Model.Client.LastName</span>
+                        </div>
+                    }
+
+                    @if (Model.Client.ClientType.ToString() == "Company")
+                    {
+                        <div class="form-group">
+                            <label asp-for="Client.CompanyName" class="control-label">Company:</label>
+                            <span class="form-control">@Model.Client.CompanyName</span>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label asp-for="OpeningDate" class="control-label">Date:</label>
+                        <span class="form-control">@Model.OpeningDate</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CaseType" class="control-label">Case:</label>
+                        <span class="form-control">@Model.CaseType</span>
+                    </div>
+
+                    @foreach (var doc in Model.Documents)
+                    {
+                        <p>Document: @doc.DocumentId</p>
+                        <a href="@doc.FileUrl" target="_blank">View Document</a>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <a class="button" asp-action="CloseFile" asp-controller="Home">Close File</a>
+                    <button class="btn btn-primary" onclick="loadDiarising('@Model.FileId')">Schedule Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

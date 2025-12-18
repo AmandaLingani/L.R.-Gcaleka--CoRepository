@@ -1,0 +1,63 @@
+﻿@model IEnumerable<L.R._Gcaleka__Co.Models.Clientele>
+@{
+    Layout = "_StaffLayout";
+}
+
+<body>
+    <h2 style=" color: black; font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">Clients List</h2>
+    <div class="row">
+        <div class="col-md-5">
+            <form>
+                <div class="search-container">
+                    <input name="searchString" class="form-control" type="search" />
+                    <button type="submit">Search Client</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main-content">
+        @if (!Model.Any())
+        {
+            <p class="text-center text-muted">No clients found.</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Client Type</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Identity Number</th>
+                        <th>Company Name</th>
+                        <th>Contact Number</th>
+                        <th>Alt Contact Number</th>
+                        <th>Email Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var client in Model)
+                    {
+                        <tr>
+                            <td>@client.ClientType</td>
+                            <td>@HtmlHelpers.DisplayValue(client.FirstName) </td>
+                            <td>@HtmlHelpers.DisplayValue(client.LastName)</td>
+                            <td>@HtmlHelpers.DisplayValue(client.IdentityNumber) </td>
+                            <td>@HtmlHelpers.DisplayValue(client.CompanyName) </td>
+                            <td>@client.ContactNumber</td>
+                            <td>@HtmlHelpers.DisplayValue(client.AltContactNumber) </td>
+                            <td>@client.EmailAddress </td>
+                            <td><a class="link" asp-action="ClientDetails" asp-route-id="@client.ClienteleId">View More</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <a class="button" asp-controller="Home" asp-action="Dashboard">Exit</a>
+        <a class="btn" asp-controller="Home" asp-action="AddClient">New Client</a>
+    </div>
+</body>
+

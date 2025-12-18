@@ -1,0 +1,49 @@
+﻿@model L.R._Gcaleka__Co.Models.ViewModels.FileViewModel
+@{
+    Layout = "_StaffLayout";
+}
+
+<body>
+    <form enctype="multipart/form-data" asp-action="CreateFile" method="post">
+        <input type="hidden" asp-for="EmployeeId" />
+        <input type="hidden" asp-for="ClienteleId" />
+        <h2>Open File for Client</h2>
+        <div class="grid-container">
+            <div>
+                <div class="form-group">
+                    <label asp-for="FileName" class="control-label">File Number:</label>
+                    <input asp-for="FileName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="OpeningDate" class="control-label">Date:</label>
+                    <input asp-for="OpeningDate" type="date" class="form-control" />
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label asp-for="CaseType" class="control-label">Case Type:</label>
+                    <select asp-for="CaseType" class="form-control"
+                            asp-items="ViewBag.CaseTypes">
+                        <option value="">-- Select Case Type --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documents" class="control-label"></label>
+                    <div class="col-sm-10">
+                        <div class="form-file">
+                            <input type="file" asp-for="Documents" id="documentUpload"class="form-control custom-file-input" multiple />
+                            <label class="custom-file-label">Choose File....</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a asp-action="Dashboard" asp-controller="Home" class="button">Back</a>
+        <button type="submit" class="btn btn-primary">Create File</button>
+    </form>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="~/js/attachdocuments.js"></script>

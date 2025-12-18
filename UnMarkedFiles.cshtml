@@ -1,0 +1,86 @@
+﻿@model IEnumerable<L.R._Gcaleka__Co.Models.ViewModels.DiariseUnreviewedFiles>
+@{
+    Layout = "_StaffLayout";
+}
+
+
+<body>
+    <div class="main-content">
+        <h2 style=" color: black; font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">UNREVIEWED FILES</h2>
+
+       @foreach(var group in Model)
+        {
+            var dateId = group.DateScheduled.ToString("yyyyMMdd");
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-@dateId">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@dateId">
+                        @group.DateScheduled.ToString("dddd,MMMM dd, yyyy");
+                    </button>
+                </h2>
+
+                <div id="collapse-@dateId" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <ul>
+                            @foreach(var file in group.Files)
+                            {
+                                <li>
+                                    @file.File.FileName (Court Date: @(file.CourtDate?.ToString("dd MMM yyyy") ?? "N/A"))
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+
+
+
+@* <body>
+    <h2 style=" color: black; font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">UNREVIEWED FILES</h2>
+    <div class="main-content">
+       
+        <div class="main-content">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Review Date</th>
+                        <th>Court Date?</th>
+                        <th>Court Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.IsCourtDate ? "table-danger" : "")">
+                            <td>@item.File.FileName</td>
+                            <td>@item.ScheduledDate.ToShortDateString()</td>
+                            <td>
+                                @if (item.IsCourtDate)
+                                {
+                                    <span class="badge bg-danger"><i class="fas fa-gavel"></i> Court Date</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary">Regular Check</span>
+                                }
+                            </td>
+                            <td>@item.CourtName</td>
+                            <td>
+                                <a asp-action="FileDetails" asp-route-id="@item.FileId" class="link">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-action="Dashboard" asp-controller="Home" class="button">Back</a>
+
+        </div>
+    </div>
+
+</body>
+ *@

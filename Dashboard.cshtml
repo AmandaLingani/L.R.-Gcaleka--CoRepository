@@ -1,0 +1,64 @@
+﻿@model IEnumerable<L.R._Gcaleka__Co.Models.Diarise>
+@{
+    Layout = "_StaffLayout";
+}
+
+<body>
+    <h2 style=" color: black; font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">TODAY</h2>
+    <br />
+    <div class="blockcontainer">
+        <div class="container-dashboard col-md-4">
+            <h3>Unreviewed Files</h3>
+            <a class="btn" asp-action="UnMarkedFiles" asp-controller="Home">></a>
+        </div>
+        <div class="container-dashboard col-md-4">
+            <h3>Court Dates</h3>
+            <a class="btn" asp-action="UnMarkedFiles" asp-controller="Home">></a>
+        </div>
+        <div class="container-dashboard col-md-4">
+            <h3>Client Documents</h3>
+            <a class="btn" asp-action="UnMarkedFiles" asp-controller="Home">></a>
+        </div>
+
+    </div>
+    <br />
+
+    <div class="main-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Review Date</th>
+                    <th>Court Date?</th>
+                    <th>Court Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="@(item.IsCourtDate ? "table-danger" : "")">
+                        <td>@item.File.FileName</td>
+                        <td>@item.ScheduledDate.ToShortDateString()</td>
+                        <td>
+                            @if (item.IsCourtDate)
+                            {
+                                <span class="badge bg-danger"><i class="fas fa-gavel"></i> Court Date</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary">Regular Check</span>
+                            }
+                        </td>
+                        <td>@item.CourtName</td>
+                        <td>
+                            <a asp-action="FileDetails" asp-route-id="@item.FileId" class="link">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</body>

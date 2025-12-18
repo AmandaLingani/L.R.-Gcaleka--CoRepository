@@ -1,0 +1,63 @@
+﻿@model IEnumerable<L.R._Gcaleka__Co.Models.Files>
+@{
+    Layout = "_StaffLayout";
+}
+
+<body>
+    <h2 style=" color: black; font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;">Index</h2>
+    <div class="row">
+        <div class="col-md-5">
+            <form>
+                <div class="search-container">
+                    <input name="searchString" class="form-control" type="search" /> 
+                    <button type="submit">Search Files</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main-content">
+        @if (!Model.Any())
+        {
+            <p class="text-center text-muted">No files found.</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>File Number</th>
+                        <th>Case Type</th>
+                        <th>Date Opened</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var file in Model)
+                    {
+                        <tr>
+                            <td>@file.FileName</td>
+                            <td>@file.CaseType</td>
+                            <td>@file.OpeningDate </td>
+                            @if (file.Client.ClientType.ToString() == "Individual")
+                            {
+                                <td>@file.Client.FirstName @file.Client.LastName</td>
+                            }
+                            @if (file.Client.ClientType.ToString() == "Company")
+                            {
+                                <td>@file.Client.CompanyName</td>
+                            }
+                            <td>@file.Client.EmailAddress</td>
+                            <td><a class="link" asp-action="FileDetails" asp-route-id="@file.FileId">View More</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <a class="btn" asp-controller="Home" asp-action="Dashboard">Exit</a>
+    </div>
+
+   
+</body>
